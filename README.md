@@ -19,7 +19,7 @@ A simple website that checks **tomorrow’s rain probability** for a given city 
 
 ## How to Run
 
-1. Install dependencies:
+Install dependencies:
 
 ```bash
 npm i
