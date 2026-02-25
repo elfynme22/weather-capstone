@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather Capstone</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="card">
+      <h1>Will it rain tomorrow?</h1>
+
+      <form action="/weather" method="GET">
+        <input
+          name="city"
+          placeholder="Enter a city (e.g., Ankara)"
+          required
+          value="<%= lastCity %>"
+        />
+        <button type="submit">Check</button>
+      </form>
+
+      <% if (error) { %>
+        <p class="error"><%= error %></p>
+      <% } %>
+
+      <% if (weather) { %>
+        <h2><%= weather.city %></h2>
+
+        <p>
+          <%= weather.date %> — Tomorrow:
+          <strong><%= weather.summary %></strong>
+        </p>
+
+        <p>Min temp: <%= weather.tempMin %>°C</p>
+        <p>Max temp: <%= weather.tempMax %>°C</p>
+        <p>Rain probability: <%= weather.rainChance %>%</p>
+<h3>Next 7 days</h3>
+
+<div class="grid">
+  <% weather.forecast.slice(1).forEach(day => { %>
+    <div class="day-card">
+      <p class="date"><%= day.date %></p>
+      <p class="temp">🌡️ <%= day.tempMin %>°C — <%= day.tempMax %>°C</p>
+      <p class="rain">☔ Rain: <%= day.rainChance %>%</p>
+    </div>
+  <% }) %>
+</div>
+      <% } %>
+    </main>
+  </body>
+</html>
